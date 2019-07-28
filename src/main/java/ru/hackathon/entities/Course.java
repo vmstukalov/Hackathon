@@ -24,6 +24,9 @@ public class Course {
     private Double rating;
     @JsonManagedReference
     private List<CourseReview> reviews;
+    @JsonManagedReference
+    private List<Skill> skills;
+    private String result;
 
 
     @Id
@@ -110,5 +113,31 @@ public class Course {
 
     public void setReviews(List<CourseReview> reviews) {
         this.reviews = reviews;
+    }
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "course_skill",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    @Column(name = "result")
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

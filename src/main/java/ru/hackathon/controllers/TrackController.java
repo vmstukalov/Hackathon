@@ -30,7 +30,9 @@ public class TrackController {
 
         JsonTrack result = new JsonTrack();
         result.setCourses(courses);
+        result.setSize(courses.size());
         result.setName(track.getName());
+        result.setResult(track.getResult());
         //result.set
 
 

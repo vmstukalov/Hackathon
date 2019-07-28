@@ -17,8 +17,9 @@ public class Track {
     private Way way;
     @JsonIgnore
     private List<Course> courses;
-
     private List<Interest> interests;
+    private List<Skill> skills;
+    private String result;
 
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,5 +68,30 @@ public class Track {
 
     public void setInterests(List<Interest> interests) {
         this.interests = interests;
+    }
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "track_skill",
+            joinColumns = @JoinColumn(name = "track_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    @Column(name = "result")
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

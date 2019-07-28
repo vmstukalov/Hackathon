@@ -10,8 +10,9 @@ public class JsonTrack {
 
 
     private List<Course> courses;
-
     private String name;
+    private String result;
+    private Integer size;
 
     public String getName() {
         return name;
@@ -29,5 +30,19 @@ public class JsonTrack {
         this.courses = courses;
     }
 
+    public String getResult() {
+        return result;
+    }
 
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
 }
